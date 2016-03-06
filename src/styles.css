@@ -1,0 +1,129 @@
+.ButtonMyltiply{
+    background: #419d14;
+    border-color: #000;
+    display:inline-block;
+    height:30px;
+    line-height:30px;
+    position:relative;
+    border-radius:5px;
+    padding:0 15px;
+    color:#fff;
+    cursor:pointer;
+    margin: 30px 0px;
+}
+.ButtonMyltiply:after{
+    position:absolute;
+    content:'';
+    height:22px;
+    border-color: #000;
+    width:22px;
+    border-radius:5px;
+    right:-8px;
+    top:4px;
+    z-index:1;
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.ButtonMyltiply:after{
+    background: #419d14;
+    
+}
+.ButtonMyltiply:disabled{
+    background: buttonface;
+    color: graytext;
+}
+.ButtonMyltiply:disabled:after{
+    background: buttonface;
+}
+.ButtonMyltiply:focus{
+    border-left: 2px solid red;
+    border-bottom: 2px solid red;
+    border-right: 0px solid red;
+    border-top: 2px solid red;
+    text-decoration: none;
+}
+.ButtonMyltiply:focus:after{
+    border-left: 2px solid red;
+    border-right: 2px solid red;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
+    height: 24px;
+    width: 24px;
+    border-radius: 5px;
+    right: -8px;
+    top: 1px;
+    
+}
+.ButtonMyltiply:hover,.ButtonMyltiply:hover:after {
+    color:#fff;
+    background-color:#449d44;
+    border-color:#398439;
+    text-decoration: none;
+}
+.ButtonMyltiply:active,.ButtonMyltiply:hover:active {
+    color:#fff;
+    background-color:#449d44;
+/*    border-color:#398439*/
+}
+.ButtonMyltiply:focus, .ButtonMyltiply:after:focus {
+    outline: none
+}
+.ControlRow {
+    margin: 50px 0px;
+}
+
+.ControlRow >div> button {
+    margin: 0px 5px 10px 0px;
+}
+.ControlRow >div> input[type="radio"] {
+    margin:10px;
+}
+.btn.ButtonClear:focus {
+    border: 2px solid #337ab7
+}
+.btn.btn-dafault:active{
+    border: 0px;
+}
+.MatrixValue {
+    width:35px;
+    height: 35px;
+    text-align: center;
+}
+.MatrixValue:focus{
+    border: 1px solid blue;
+}
+
+.matrix{
+    display: flex;
+    align-self:center;
+    float:left;
+    margin: 1em;
+}
+.left {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width:10px;
+}
+.right {
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width:10px;
+}
+.MatrixTable {
+    padding:10px 0px;
+}
+.ControlRow > div {
+    margin: 0px 3px 10px 0px;
+}
+.ControlPanel{
+    height: 100%;
+    padding: 2em;
+    display: inline;
+    float: left;
+    background:#bcbcbc;
+}

@@ -1,0 +1,36 @@
+{
+  "name": "webpack-react-bootstrap-boilerplate",
+  "version": "0.0.1",
+  "description": "Hot reloading React+Bootstrap boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.3",
+    "react": "^0.14.3",
+    "react-bootstrap": "^0.28.1",
+    "react-dom": "^0.14.3",
+    "react-typeahead-component": "^0.9.0",
+    "redux-thunk": "^1.0.3",
+    "request": "^2.69.0",
+    "simple-react-typeahead": "^0.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.34",
+    "babel-loader": "^5.4.0",
+    "babel-plugin-react-transform": "^1.1.1",
+    "css-loader": "^0.23.0",
+    "file-loader": "^0.8.5",
+    "react-transform-hmr": "^1.0.1",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.9",
+    "webpack-dev-middleware": "^1.4.0",
+    "webpack-hot-middleware": "^2.6.0"
+  }
+}
