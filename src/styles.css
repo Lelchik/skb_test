@@ -1,26 +1,36 @@
+
+.ButtonMyltiply:hover{
+    color:#fff;
+}
+.ButtonMyltiply:active{
+    bottom:-1px;
+}
 .ButtonMyltiply{
-    background: #419d14;
-    border-color: #000;
+    background: #5cb85c;
+    border-color: #4cae4c;
     display:inline-block;
     height:30px;
-    line-height:30px;
     position:relative;
-    border-radius:5px;
-    padding:0 15px;
+    border-radius:3px;
+    padding:0 20px;
     color:#fff;
+    border:2px solid #4cae4c;
+    border-right: 0px;
     cursor:pointer;
-    margin: 30px 0px;
+    outline: none;
+    z-index:2;
 }
 .ButtonMyltiply:after{
     position:absolute;
     content:'';
     height:22px;
-    border-color: #000;
     width:22px;
-    border-radius:5px;
-    right:-8px;
-    top:4px;
+    border-radius:3px;
+    right:-9px;
+    top:2px;
     z-index:1;
+    border-right: 2px solid #4cae4c;
+    border-top:2px solid #4cae4c;
     -webkit-transform:rotate(45deg);
     -moz-transform:rotate(45deg);
     -o-transform:rotate(45deg);
@@ -28,7 +38,7 @@
     transform:rotate(45deg);
 }
 .ButtonMyltiply:after{
-    background: #419d14;
+    background: #5cb85c;
     
 }
 .ButtonMyltiply:disabled{
@@ -39,37 +49,29 @@
     background: buttonface;
 }
 .ButtonMyltiply:focus{
-    border-left: 2px solid red;
-    border-bottom: 2px solid red;
-    border-right: 0px solid red;
-    border-top: 2px solid red;
-    text-decoration: none;
+    border-left-color: blue;
+    border-bottom-color: blue;
+    border-right-color: blue;
+    border-top-color:blue;
+    box-sizing:  content-box;
 }
 .ButtonMyltiply:focus:after{
-    border-left: 2px solid red;
-    border-right: 2px solid red;
-    border-top: 2px solid red;
-    border-bottom: 2px solid red;
-    height: 24px;
-    width: 24px;
-    border-radius: 5px;
-    right: -8px;
-    top: 1px;
-    
+    border-right-color:blue;
+    border-top-color:blue;
+    height:24px;
+    width:24px;
+    right:-11px;
+    top:3px;
 }
 .ButtonMyltiply:hover,.ButtonMyltiply:hover:after {
     color:#fff;
     background-color:#449d44;
-    border-color:#398439;
-    text-decoration: none;
+    border-color:#398439
 }
 .ButtonMyltiply:active,.ButtonMyltiply:hover:active {
     color:#fff;
     background-color:#449d44;
 /*    border-color:#398439*/
-}
-.ButtonMyltiply:focus, .ButtonMyltiply:after:focus {
-    outline: none
 }
 .ControlRow {
     margin: 50px 0px;
@@ -127,3 +129,8 @@
     float: left;
     background:#bcbcbc;
 }
+.MatrixTable>tbody>tr>td {
+    border:none;
+    padding:0px;
+}
+

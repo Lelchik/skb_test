@@ -6,7 +6,8 @@ import {
     CHANGE_SELECTED_MATRIX,
     ADD_ROW_OR_COL,
     MULTIPLY_MATRIX,
-    CHANGE_COLOR
+    CHANGE_COLOR,
+    CHANGE_PLACE
 } from '../constants'
 
 export function ClearMatrix(){
@@ -46,5 +47,11 @@ export function ChangeBackground(data){
     return {
         type: CHANGE_COLOR,
         data
+    }
+}
+export function ChangePlace(){
+    console.log('chabge');
+    return {
+        type: CHANGE_PLACE
     }
 }

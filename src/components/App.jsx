@@ -11,7 +11,8 @@ import {
   ChangeSelectedMatrix,
   AddRowOrCol,
   MultiplyMatrix,
-  ChangeBackground
+  ChangeBackground,
+  ChangePlace
 } from '../actions'
 const App = createClass({
   
@@ -45,6 +46,7 @@ const mapDispatchToProps = {
   ChangeSelectedMatrix,
   AddRowOrCol,
   MultiplyMatrix,
-  ChangeBackground
+  ChangeBackground,
+  ChangePlace
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App)

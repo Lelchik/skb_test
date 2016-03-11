@@ -10,7 +10,7 @@ export const Matrix = createClass({
     {
       Array.from({ length: this.props.col },
         (v, c) =>  (
-          <td key={c}>
+          <td key={c} style={{border:'none'}}>
             <input
               className="MatrixValue"
               placeholder={`${this.props.name}${r},${c}`}
@@ -20,6 +20,7 @@ export const Matrix = createClass({
                 (e) => { this.props.SetValue({name:this.props.name, row:r,col:c,value:e.target.value}) } }
               onFocus ={ (e) => {this.props.ChangeBackground('#5199db')} }
               onBlur = { (e) => {this.props.ChangeBackground('#bcbcbc')}}
+              disabled= {this.props.disabled}
             />
           </td>
           )

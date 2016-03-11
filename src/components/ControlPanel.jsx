@@ -85,8 +85,8 @@ export const ControlPanel = createClass({
           </div>
         </div>
         <div className="ControlRow">
-          <span style={{ maxWidth:'200px' }}>
-            {'количество столбцов матрицы А не равно количеству строк матрицы В'}
+          <span style={{ maxWidth: '200px', display: 'inline-block', color: 'red', fontWeight:'bold' }}>
+            {this.props.error}
           </span>
         </div>
       </div>
