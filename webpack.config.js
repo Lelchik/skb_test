@@ -1,37 +1,42 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require("path");
+var webpack = require("webpack");
 
 module.exports = {
-  entry: [
-    'webpack-hot-middleware/client',
-    path.join(__dirname, 'src')
-  ],
+  entry: ["webpack-hot-middleware/client", path.join(__dirname, "src")],
   resolve: {
-    extensions: [ '', '.js', '.jsx' ]
+    extensions: [".js", ".jsx"],
   },
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'bundle.js',
-    publicPath: '/'
+    path: path.join(__dirname, "dist"),
+    filename: "bundle.js",
+    publicPath: "/",
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
   },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loader: 'babel',
-      include: path.join(__dirname, 'src')
-    }, {
-      test: /\.css$/,
-      loader: 'style!css'
-    }, {
-      test: /\.(png|jpg|svg)(\?v.*)?$/,
-      loader: 'url-loader?name=img-[sha512:Hash:base64:9].[ext]&limit=8192'
-    }, {
-      test: /\.(eot|woff2?|ttf)(\?v.*)?$/,
-      loader: 'file-loader?name=font-[sha512:Hash:base64:9].[ext]'
-    }]
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+      {
+        test: /\.css$/,
+        rules: [
+          {
+            use: ["style-loader", "css-loader"],
+          },
+        ],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.(png|woff|woff2|eot)$/,
+        use: "file-loader",
+        exclude: /node_modules/,
+      },
+    ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devtool: 'eval-source-map',
-}
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  devtool: "eval-source-map",
+};

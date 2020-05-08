@@ -1,9 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import React, { createClass } from 'react'
-import ControlPanel from './ControlPanel'
-import MatrixPanel from './MatrixPanel'
+import React, { createClass } from "react";
+import ControlPanel from "./ControlPanel";
+import MatrixPanel from "./MatrixPanel";
 
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 import {
   ClearMatrix,
   SetValue,
@@ -12,31 +11,21 @@ import {
   AddRowOrCol,
   MultiplyMatrix,
   ChangeBackground,
-  ChangePlace
-} from '../actions'
-const App = createClass({
-  
-  render() {
-    console.log(this.props);
-    return (
-      <div style={{ height: '100%', width: '100%' }}>
-        <ControlPanel
-          { ...this.props }
-    
-          
-          ></ControlPanel>
-        <MatrixPanel {
-          ...this.props }
-         
-        ></MatrixPanel>
-      </div>
-    )
-  }
-})
+  ChangePlace,
+} from "../actions";
+const App = (props) => {
+  console.log(props);
+  return (
+    <div style={{ height: "100%", width: "100%" }}>
+      <ControlPanel {...props}></ControlPanel>
+      <MatrixPanel {...props}></MatrixPanel>
+    </div>
+  );
+};
 function mapStateToProps(state) {
   return {
-    ...state
-  }
+    ...state,
+  };
 }
 
 const mapDispatchToProps = {
@@ -47,6 +36,6 @@ const mapDispatchToProps = {
   AddRowOrCol,
   MultiplyMatrix,
   ChangeBackground,
-  ChangePlace
-}
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+  ChangePlace,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
