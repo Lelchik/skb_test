@@ -1,24 +1,24 @@
 /*eslint-disable */
-import React, { createClass } from "react";
-import { Table } from "react-bootstrap";
+import React from "react";
+import { Input } from "@skbkontur/react-ui";
 
 export const Matrix = (props) => {
-  console.log(props);
-  let test = Array.from({ length: props.row }, (v, r) => (
-    <tr key={r}>
-      {Array.from({ length: props.col }, (v, c) => (
-        <td key={c} style={{ border: "none" }}>
-          <input
-            className="MatrixValue"
-            placeholder={`${props.name}${r},${c}`}
+  let cells = props.array.map((row, rowIndex) => (
+    <tr key={rowIndex}>
+      {props.array[rowIndex].map((col, colIndex) => (
+        <td key={colIndex}>
+          <Input
+            width={45}
+            align={"center"}
+            placeholder={`${props.name}${rowIndex},${colIndex}`}
             type="text"
-            value={props.array[r][c] || ""}
-            onChange={(e) => {
+            value={col == null ? "" : col}
+            onValueChange={(value) => {
               props.SetValue({
                 name: props.name,
-                row: r,
-                col: c,
-                value: e.target.value,
+                row: rowIndex,
+                col: colIndex,
+                value: value,
               });
             }}
             onFocus={(e) => {
@@ -38,11 +38,10 @@ export const Matrix = (props) => {
     <div className="matrix">
       <i className="left"></i>
       <div className="MatrixTable">
-        <Table style={{ marginBottom: "0px" }}>
-          <tbody>{test}</tbody>
-        </Table>
+        <table>
+          <tbody>{cells}</tbody>
+        </table>
       </div>
-
       <i className="right"></i>
     </div>
   );

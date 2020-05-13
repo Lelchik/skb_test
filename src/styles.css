@@ -1,136 +1,47 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
 
-.ButtonMyltiply:hover{
-    color:#fff;
+#app {
+  display: flex;
+  height: 100%;
+  min-height: 100%;
+  align-items: stretch;
 }
-.ButtonMyltiply:active{
-    bottom:-1px;
-}
-.ButtonMyltiply{
-    background: #5cb85c;
-    border-color: #4cae4c;
-    display:inline-block;
-    height:30px;
-    position:relative;
-    border-radius:3px;
-    padding:0 20px;
-    color:#fff;
-    border:2px solid #4cae4c;
-    border-right: 0px;
-    cursor:pointer;
-    outline: none;
-    z-index:2;
-}
-.ButtonMyltiply:after{
-    position:absolute;
-    content:'';
-    height:22px;
-    width:22px;
-    border-radius:3px;
-    right:-9px;
-    top:2px;
-    z-index:1;
-    border-right: 2px solid #4cae4c;
-    border-top:2px solid #4cae4c;
-    -webkit-transform:rotate(45deg);
-    -moz-transform:rotate(45deg);
-    -o-transform:rotate(45deg);
-    -ms-transform:rotate(45deg);
-    transform:rotate(45deg);
-}
-.ButtonMyltiply:after{
-    background: #5cb85c;
-    
-}
-.ButtonMyltiply:disabled{
-    background: buttonface;
-    color: graytext;
-}
-.ButtonMyltiply:disabled:after{
-    background: buttonface;
-}
-.ButtonMyltiply:focus{
-    border-left-color: blue;
-    border-bottom-color: blue;
-    border-right-color: blue;
-    border-top-color:blue;
-    box-sizing:  content-box;
-}
-.ButtonMyltiply:focus:after{
-    border-right-color:blue;
-    border-top-color:blue;
-    height:24px;
-    width:24px;
-    right:-11px;
-    top:3px;
-}
-.ButtonMyltiply:hover,.ButtonMyltiply:hover:after {
-    color:#fff;
-    background-color:#449d44;
-    border-color:#398439
-}
-.ButtonMyltiply:active,.ButtonMyltiply:hover:active {
-    color:#fff;
-    background-color:#449d44;
-/*    border-color:#398439*/
-}
+
 .ControlRow {
-    margin: 50px 0px;
+  margin: 10px 0px;
 }
 
-.ControlRow >div> button {
-    margin: 0px 5px 10px 0px;
-}
-.ControlRow >div> input[type="radio"] {
-    margin:10px;
-}
-.btn.ButtonClear:focus {
-    border: 2px solid #337ab7
-}
-.btn.btn-dafault:active{
-    border: 0px;
-}
-.MatrixValue {
-    width:35px;
-    height: 35px;
-    text-align: center;
-}
-.MatrixValue:focus{
-    border: 1px solid blue;
+.Spacer {
+  height: 50px;
 }
 
-.matrix{
-    display: flex;
-    align-self:center;
-    float:left;
-    margin: 1em;
+.matrix {
+  display: flex;
+  margin: 1em;
 }
+
 .left {
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    width:10px;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 10px;
 }
+
 .right {
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    width:10px;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  width: 10px;
 }
 .MatrixTable {
-    padding:10px 0px;
-}
-.ControlRow > div {
-    margin: 0px 3px 10px 0px;
-}
-.ControlPanel{
-    height: 100%;
-    padding: 2em;
-    display: inline;
-    float: left;
-    background:#bcbcbc;
-}
-.MatrixTable>tbody>tr>td {
-    border:none;
-    padding:0px;
+  padding: 10px 0px;
 }
 
+.ControlPanel {
+  padding: 2em;
+}

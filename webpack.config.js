@@ -23,17 +23,14 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        rules: [
-          {
-            use: ["style-loader", "css-loader"],
-          },
+        use: [
+          "style-loader",
+          { loader: "css-loader", options: { modules: "global" } },
         ],
-        exclude: /node_modules/,
       },
       {
-        test: /\.(png|woff|woff2|eot)$/,
+        test: /\.(woff(2)?|ttf|eot|svg|png)(\?v=\d+\.\d+\.\d+)?$/,
         use: "file-loader",
-        exclude: /node_modules/,
       },
     ],
   },

@@ -1,15 +1,15 @@
 import "./styles.css";
 import React from "react";
-import { render } from "react-dom";
+import ReactDom from "react-dom";
 import App from "./components/App";
 import reducer from "./reducers";
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
-// require("babel-core/register");
 
 const store = createStore(reducer, applyMiddleware(thunkMiddleware));
-render(
+
+ReactDom.render(
   <Provider store={store}>
     <App />
   </Provider>,

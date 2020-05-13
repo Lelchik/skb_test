@@ -1,7 +1,11 @@
-import React, { createClass } from "react";
+import React from "react";
+import { Button, RadioGroup, Radio } from "@skbkontur/react-ui";
+import UndoIcon from "@skbkontur/react-icons/Undo";
+import ArrowParallelVerticalIcon from "@skbkontur/react-icons/ArrowParallelVertical";
+import AddIcon from "@skbkontur/react-icons/Add";
+import RemoveIcon from "@skbkontur/react-icons/Remove";
 
 export const ControlPanel = (props) => {
-  console.log("ControlPanel", props);
   return (
     <div
       className="ControlPanel"
@@ -9,78 +13,54 @@ export const ControlPanel = (props) => {
         background: props.color,
       }}
     >
-      <button className="button ButtonMyltiply" onClick={props.MultiplyMatrix}>
-        {"Умножить матрицы"}
-      </button>
+      <Button onClick={props.MultiplyMatrix} use="success" arrow>
+        Умножить матрицы
+      </Button>
+      <div className="Spacer" />
+      <div className="ControlRow">
+        <Button use="primary" onClick={props.ClearMatrix} icon={<UndoIcon />}>
+          Очистить матрицы
+        </Button>
+      </div>
+      <div className="ControlRow">
+        <Button
+          use="primary"
+          onClick={props.ChangePlace}
+          icon={<ArrowParallelVerticalIcon />}
+        >
+          Поменять матрицы местами
+        </Button>
+      </div>
+      <div className="Spacer" />
+      <div className="ControlRow">
+        <RadioGroup
+          value={props.selectMatrix}
+          onValueChange={props.ChangeSelectedMatrix}
+        >
+          <Radio value="matrixA">Матрица А</Radio>{" "}
+          <Radio value="matrixB">Матрица B</Radio>
+        </RadioGroup>
+      </div>
+      <div className="ControlRow">
+        <Button onClick={(e) => props.AddRowOrCol(0)} icon={<AddIcon />}>
+          Добавить
+        </Button>
+        <Button onClick={(e) => props.DeleteRowOrCol(0)} icon={<RemoveIcon />}>
+          Удалить
+        </Button>
+        Строку
+      </div>
+      <div className="ControlRow">
+        <Button onClick={(e) => props.AddRowOrCol(1)} icon={<AddIcon />}>
+          Добавить
+        </Button>
+        <Button onClick={(e) => props.DeleteRowOrCol(1)} icon={<RemoveIcon />}>
+          Удалить
+        </Button>
+        Столбец
+      </div>
 
-      <div className="ControlRow">
-        <div>
-          <button
-            className="btn btn-default ButtonClear"
-            onClick={props.ClearMatrix}
-          >
-            &#8630; Очистить матрицы
-          </button>
-        </div>
-        <div>
-          <button
-            className=" btn btn-default ButtonClear"
-            onClick={props.ChangePlace}
-          >
-            &#8645; Поменять матрицы местами
-          </button>
-        </div>
-      </div>
-      <div className="ControlRow">
-        <div>
-          <input
-            id="radioMatrixA"
-            name="r"
-            type="radio"
-            checked={props.selectMatrix === "matrixA"}
-            onChange={props.ChangeSelectedMatrix}
-          />
-          <label htmlFor="r1">Матрица А</label>
-          <input
-            checked={props.selectMatrix === "matrixB"}
-            onChange={props.ChangeSelectedMatrix}
-            id="radioMatrixB"
-            name="r"
-            type="radio"
-          />
-          <label htmlFor="r2">Матрица В</label>
-        </div>
-        <div>
-          <button
-            className="btn btn-default"
-            onClick={(e) => props.AddRowOrCol(0)}
-          >
-            &#43; Добавить
-          </button>
-          <button
-            className="btn btn-default"
-            onClick={(e) => props.DeleteRowOrCol(0)}
-          >
-            &#45; Удалить
-          </button>
-          Строку
-        </div>
-        <div>
-          <button
-            className="btn btn-default"
-            onClick={(e) => props.AddRowOrCol(1)}
-          >
-            &#43; Добавить
-          </button>
-          <button
-            className="btn btn-default"
-            onClick={(e) => props.DeleteRowOrCol(1)}
-          >
-            &#45; Удалить
-          </button>
-          Столбец
-        </div>
-      </div>
+      <div className="Spacer" />
       <div className="ControlRow">
         <span
           style={{

@@ -49,10 +49,10 @@ const emptyState = {
 };
 export default function reducer(state = emptyState, { type, ...data }) {
   console.log(state);
+  let key = 1;
   switch (type) {
     case CLEAR_MATRIX:
       var newState = state;
-      let key;
       for (key in newState) {
         if (key !== "selectMatrix" && key !== "error" && key !== "color")
           newState[key].array = Array.from({ length: newState[key].row }, () =>
@@ -69,22 +69,21 @@ export default function reducer(state = emptyState, { type, ...data }) {
     case SET_VALUE:
       console.log(data);
       newState = state;
-      let matrixKey = "";
       switch (data.name) {
         case "a": {
-          matrixKey = "matrixA";
+          key = "matrixA";
           break;
         }
         case "b": {
-          matrixKey = "matrixB";
+          key = "matrixB";
           break;
         }
         case "c": {
-          matrixKey = "matrixC";
+          key = "matrixC";
           break;
         }
       }
-      newState[matrixKey].array[data.row][data.col] = data.value;
+      newState[key].array[data.row][data.col] = data.value;
       console.log(newState);
       return {
         ...state,

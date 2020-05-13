@@ -1,4 +1,4 @@
-import React, { createClass } from "react";
+import React from "react";
 import ControlPanel from "./ControlPanel";
 import MatrixPanel from "./MatrixPanel";
 
@@ -14,12 +14,11 @@ import {
   ChangePlace,
 } from "../actions";
 const App = (props) => {
-  console.log(props);
   return (
-    <div style={{ height: "100%", width: "100%" }}>
-      <ControlPanel {...props}></ControlPanel>
-      <MatrixPanel {...props}></MatrixPanel>
-    </div>
+    <>
+      <ControlPanel {...props} />
+      <MatrixPanel {...props} />
+    </>
   );
 };
 function mapStateToProps(state) {
@@ -38,4 +37,5 @@ const mapDispatchToProps = {
   ChangeBackground,
   ChangePlace,
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
