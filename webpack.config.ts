@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = {
   entry: ["webpack-hot-middleware/client", path.join(__dirname, "src")],
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
   },
   output: {
     path: path.join(__dirname, "dist"),
@@ -17,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(t|j)sx?$/,
         exclude: /node_modules/,
         use: ["babel-loader"],
       },
