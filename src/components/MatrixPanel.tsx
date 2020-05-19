@@ -1,6 +1,6 @@
-import React from "react";
-import Matrix from "./Matrix";
-import { Colors, Matrix as MatrixType } from "../types";
+import React from 'react';
+import Matrix from './Matrix';
+import { Colors, Matrix as MatrixType } from '../types';
 
 interface Props {
   matrixC: MatrixType;
@@ -25,23 +25,21 @@ export const MatrixPanel = (props: Props) => {
                 matrix={props.matrixA}
                 onChange={props.onChangeMatrixA}
                 onChangeBackground={props.onChangeBackground}
-                name={"a"}
-              ></Matrix>
+                name={'a'}></Matrix>
             </td>
-            <td style={{ verticalAlign: "middle", fontSize: "x-large" }}>А</td>
+            <td style={{ verticalAlign: 'middle', fontSize: 'x-large' }}>А</td>
           </tr>
           <tr>
-            <td style={{ border: "none" }}>
+            <td style={{ border: 'none' }}>
               <Matrix
                 matrix={props.matrixB}
                 onChange={props.onChangeMatrixB}
                 onChangeBackground={props.onChangeBackground}
-                name={"b"}
-              ></Matrix>
+                name={'b'}></Matrix>
             </td>
           </tr>
           <tr>
-            <td style={{ textAlign: "center", fontSize: "x-large" }}>B</td>
+            <td style={{ textAlign: 'center', fontSize: 'x-large' }}>B</td>
           </tr>
         </tbody>
       </table>

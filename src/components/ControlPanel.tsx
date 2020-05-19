@@ -1,10 +1,10 @@
-import React from "react";
-import { Button, RadioGroup, Radio } from "@skbkontur/react-ui";
-import UndoIcon from "@skbkontur/react-icons/Undo";
-import ArrowParallelVerticalIcon from "@skbkontur/react-icons/ArrowParallelVertical";
-import AddIcon from "@skbkontur/react-icons/Add";
-import RemoveIcon from "@skbkontur/react-icons/Remove";
-import { Colors, MatrixName } from "../types";
+import React from 'react';
+import { Button, RadioGroup, Radio } from '@skbkontur/react-ui';
+import UndoIcon from '@skbkontur/react-icons/Undo';
+import ArrowParallelVerticalIcon from '@skbkontur/react-icons/ArrowParallelVertical';
+import AddIcon from '@skbkontur/react-icons/Add';
+import RemoveIcon from '@skbkontur/react-icons/Remove';
+import { Colors, MatrixName } from '../types';
 
 interface Props {
   color: Colors;
@@ -22,7 +22,7 @@ interface Props {
 
 export const ControlPanel = (props: Props) => {
   function handleChangeSelectedMatrix(value: unknown) {
-    props.onChangeSelectedMatrix(value === "A" ? MatrixName.A : MatrixName.B);
+    props.onChangeSelectedMatrix(value === 'A' ? MatrixName.A : MatrixName.B);
   }
 
   return (
@@ -30,8 +30,7 @@ export const ControlPanel = (props: Props) => {
       className="ControlPanel"
       style={{
         background: props.color,
-      }}
-    >
+      }}>
       <Button onClick={props.onMultiplication} use="success" arrow>
         Умножить матрицы
       </Button>
@@ -45,8 +44,7 @@ export const ControlPanel = (props: Props) => {
         <Button
           use="primary"
           onClick={props.onChangePlaces}
-          icon={<ArrowParallelVerticalIcon />}
-        >
+          icon={<ArrowParallelVerticalIcon />}>
           Поменять матрицы местами
         </Button>
       </div>
@@ -54,9 +52,8 @@ export const ControlPanel = (props: Props) => {
       <div className="ControlRow">
         <RadioGroup
           value={props.selectedMatrixToAction}
-          onValueChange={handleChangeSelectedMatrix}
-        >
-          <Radio value={MatrixName.A}>Матрица А</Radio>{" "}
+          onValueChange={handleChangeSelectedMatrix}>
+          <Radio value={MatrixName.A}>Матрица А</Radio>{' '}
           <Radio value={MatrixName.B}>Матрица B</Radio>
         </RadioGroup>
       </div>
@@ -83,12 +80,11 @@ export const ControlPanel = (props: Props) => {
       <div className="ControlRow">
         <span
           style={{
-            maxWidth: "200px",
-            display: "inline-block",
-            color: "red",
-            fontWeight: "bold",
-          }}
-        >
+            maxWidth: '200px',
+            display: 'inline-block',
+            color: 'red',
+            fontWeight: 'bold',
+          }}>
           {props.error}
         </span>
       </div>

@@ -1,26 +1,26 @@
-export const CLEAR_MATRIX = "CLEAR_MATRIX";
-export const CHANGE_SELECTED_MATRIX = "CHANGE_SELECTED_MATRIX";
-export const MULTIPLY_MATRIX = "MULTIPLY_MATRIX";
-export const CHANGE_COLOR = "CHANGE_COLOR";
-export const CHANGE_PLACE = "CHANGE_PLACE";
-export const ADD_ROW = "ADD_ROW";
-export const DELETE_ROW = "DELETE_ROW";
-export const ADD_COLUMN = "ADD_COLUMN";
-export const DELETE_COLUMN = "DELETE_COLUMN";
-export const CHANGE_MATRIX_A = "CHANGE_MATRIX_A";
-export const CHANGE_MATRIX_B = "CHANGE_MATRIX_B";
+export const CLEAR_MATRIX = 'CLEAR_MATRIX';
+export const CHANGE_SELECTED_MATRIX = 'CHANGE_SELECTED_MATRIX';
+export const MULTIPLY_MATRIX = 'MULTIPLY_MATRIX';
+export const CHANGE_COLOR = 'CHANGE_COLOR';
+export const CHANGE_PLACE = 'CHANGE_PLACE';
+export const ADD_ROW = 'ADD_ROW';
+export const DELETE_ROW = 'DELETE_ROW';
+export const ADD_COLUMN = 'ADD_COLUMN';
+export const DELETE_COLUMN = 'DELETE_COLUMN';
+export const CHANGE_MATRIX_A = 'CHANGE_MATRIX_A';
+export const CHANGE_MATRIX_B = 'CHANGE_MATRIX_B';
 
 export enum Colors {
-  default = "#bcbcbc",
-  edit = "#5199db",
-  error = "#f6c1c0",
+  default = '#bcbcbc',
+  edit = '#5199db',
+  error = '#f6c1c0',
 }
 
 export type Matrix = Array<Array<number | undefined>>;
 
 export enum MatrixName {
-  A = "A",
-  B = "B",
+  A = 'A',
+  B = 'B',
 }
 
 export interface ClearMatrixAction {

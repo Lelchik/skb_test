@@ -4,8 +4,8 @@
   "description": "Hot reloading React+Bootstrap boilerplate",
   "main": "src/index.jsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "lint": "eslint src/**/*.tsx src/**/*.ts"
   },
   "author": "",
   "license": "ISC",
@@ -30,10 +30,21 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-typescript": "^7.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-react-transform": "^1.1.1",
     "css-loader": "^3.5.3",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^6.0.0",
+    "prettier": "^2.0.5",
     "react-transform-hmr": "^1.0.1",
     "style-loader": "^1.2.1",
     "url-loader": "^0.5.7",

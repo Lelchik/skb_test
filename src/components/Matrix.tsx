@@ -1,6 +1,6 @@
-import React from "react";
-import { Input } from "@skbkontur/react-ui";
-import { Colors, Matrix as MatrixType } from "../types";
+import React from 'react';
+import { Input } from '@skbkontur/react-ui';
+import { Colors, Matrix as MatrixType } from '../types';
 
 interface Props {
   matrix: MatrixType;
@@ -14,7 +14,7 @@ export const Matrix = (props: Props) => {
   function handleChangeValue(
     rowIndex: number,
     colIndex: number,
-    value: string
+    value: string,
   ) {
     if (props.onChange != null && !isNaN(Number(value))) {
       const matrix = props.matrix;
@@ -39,10 +39,10 @@ export const Matrix = (props: Props) => {
       <td key={colIndex}>
         <Input
           width={45}
-          align={"center"}
+          align={'center'}
           placeholder={`${props.name}${rowIndex},${colIndex}`}
           type="text"
-          value={col == null ? "" : col + ""}
+          value={col == null ? '' : col + ''}
           onValueChange={(value) =>
             handleChangeValue(rowIndex, colIndex, value)
           }
@@ -62,7 +62,7 @@ export const Matrix = (props: Props) => {
     return props.matrix.map(
       (row: Array<number | undefined>, rowIndex: number) => (
         <tr key={rowIndex}>{renderColumn(row, rowIndex)}</tr>
-      )
+      ),
     );
   }
 

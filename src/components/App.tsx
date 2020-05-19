@@ -1,8 +1,8 @@
-import React from "react";
-import ControlPanel from "./ControlPanel";
-import MatrixPanel from "./MatrixPanel";
+import React from 'react';
+import ControlPanel from './ControlPanel';
+import MatrixPanel from './MatrixPanel';
 
-import { connect, ConnectedProps } from "react-redux";
+import { connect, ConnectedProps } from 'react-redux';
 import {
   ClearMatrix,
   ChangeSelectedMatrix,
@@ -15,8 +15,8 @@ import {
   AddRow,
   DeleteColumn,
   DeleteRow,
-} from "../actions";
-import { Matrix, MatrixName, Colors } from "../types";
+} from '../actions';
+import { Matrix, MatrixName, Colors } from '../types';
 
 export interface State {
   matrixA: Matrix;

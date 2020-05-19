@@ -1,4 +1,4 @@
-import { State } from "../components/App";
+import { State } from '../components/App';
 import {
   CLEAR_MATRIX,
   CHANGE_SELECTED_MATRIX,
@@ -14,32 +14,21 @@ import {
   CHANGE_MATRIX_B,
   MatrixName,
   Colors,
-} from "../types";
+} from '../types';
 
 const emptyState: State = {
-  matrixA: [
-    [1, 0, 0],
-    [0, 1, 0],
-    [0, 0, 1],
-    [1, 2, 3],
-  ], //createEmptyArray(3, 3),
-  matrixB: [
-    [1, 2, 3, 12],
-    [4, 5, 6, 11],
-    [7, 8, 9, 12],
-  ], //createEmptyArray(3, 3),
-  matrixC: createEmptyArray(4, 4),
+  matrixA: createEmptyArray(3, 3),
+  matrixB: createEmptyArray(3, 3),
+  matrixC: createEmptyArray(3, 3),
   selectMatrix: MatrixName.A,
   color: Colors.default,
 };
 export default function reducer(
   state = emptyState,
-  action: MyltiplyMatrixTypes
+  action: MyltiplyMatrixTypes,
 ): State {
-  let matrix;
-  let matrixC;
   switch (action.type) {
-    case CLEAR_MATRIX:
+    case CLEAR_MATRIX: {
       return {
         ...state,
         ...clearError(),
@@ -47,13 +36,15 @@ export default function reducer(
         matrixB: createEmptyArray(state.matrixB.length, state.matrixB.length),
         matrixC: createEmptyArray(state.matrixC.length, state.matrixC.length),
       };
-    case CHANGE_SELECTED_MATRIX:
+    }
+    case CHANGE_SELECTED_MATRIX: {
       return {
         ...state,
         ...clearError(),
         selectMatrix:
-          state.selectMatrix == MatrixName.A ? MatrixName.B : MatrixName.A,
+          state.selectMatrix === MatrixName.A ? MatrixName.B : MatrixName.A,
       };
+    }
     case CHANGE_COLOR:
       return {
         ...state,
@@ -67,11 +58,11 @@ export default function reducer(
         matrixB: state.matrixA,
         matrixC: createEmptyArray(
           state.matrixB.length,
-          state.matrixA[0].length
+          state.matrixA[0].length,
         ),
       };
 
-    case MULTIPLY_MATRIX:
+    case MULTIPLY_MATRIX: {
       const matrixAColCount = state.matrixA.length;
       const matrixCColCount = state.matrixC.length;
       const matrixCRowCount = state.matrixC[0].length;
@@ -80,20 +71,20 @@ export default function reducer(
         return {
           ...state,
           error:
-            "количество столбцов матрицы А не равно количеству строк матрицы В",
+            'количество столбцов матрицы А не равно количеству строк матрицы В',
           color: Colors.error,
         };
-      if (state.matrixA.some((el) => el.some((e) => e == undefined))) {
+      if (state.matrixA.some((el) => el.some((e) => e === undefined))) {
         return {
           ...state,
-          error: "не все ячейки матрицы А заполнены",
+          error: 'не все ячейки матрицы А заполнены',
           color: Colors.error,
         };
       }
-      if (state.matrixB.some((el) => el.some((e) => e == undefined))) {
+      if (state.matrixB.some((el) => el.some((e) => e === undefined))) {
         return {
           ...state,
-          error: "не все ячейки матрицы B заполнены",
+          error: 'не все ячейки матрицы B заполнены',
           color: Colors.error,
         };
       }
@@ -106,7 +97,7 @@ export default function reducer(
               sum += state.matrixA[i][j] * col[k];
               return sum;
             },
-            0
+            0,
           );
         }
       }
@@ -115,18 +106,18 @@ export default function reducer(
         ...state,
         ...clearError(),
         matrixC: [...state.matrixC],
-        error: "",
+        error: '',
         color: Colors.default,
       };
-
-    case ADD_ROW:
-      matrix =
+    }
+    case ADD_ROW: {
+      const matrix =
         state.selectMatrix === MatrixName.A
           ? [...state.matrixA]
           : [...state.matrixB];
       const colsCount = matrix[0].length;
       matrix.push(Array.from({ length: colsCount }));
-      matrixC =
+      const matrixC =
         state.selectMatrix === MatrixName.A
           ? [...state.matrixC]
           : state.matrixC;
@@ -139,8 +130,9 @@ export default function reducer(
         matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
         matrixC: matrixC,
       };
-    case DELETE_ROW:
-      matrix =
+    }
+    case DELETE_ROW: {
+      const matrix =
         state.selectMatrix === MatrixName.A
           ? [...state.matrixA]
           : [...state.matrixB];
@@ -148,11 +140,11 @@ export default function reducer(
         return {
           ...state,
           color: Colors.default,
-          error: "невозможно удалить последнюю строку!",
+          error: 'невозможно удалить последнюю строку!',
         };
       }
       matrix.pop();
-      matrixC =
+      const matrixC =
         state.selectMatrix === MatrixName.A
           ? [...state.matrixC]
           : state.matrixC;
@@ -166,15 +158,15 @@ export default function reducer(
         matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
         matrixC: matrixC,
       };
-
-    case ADD_COLUMN:
-      matrix =
+    }
+    case ADD_COLUMN: {
+      const matrix =
         state.selectMatrix === MatrixName.A
           ? [...state.matrixA]
           : [...state.matrixB];
 
       matrix.forEach((col) => col.push(undefined));
-      matrixC =
+      const matrixC =
         state.selectMatrix === MatrixName.B
           ? [...state.matrixC]
           : state.matrixC;
@@ -188,8 +180,9 @@ export default function reducer(
         matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
         matrixC: matrixC,
       };
-    case DELETE_COLUMN:
-      matrix =
+    }
+    case DELETE_COLUMN: {
+      const matrix =
         state.selectMatrix === MatrixName.A
           ? [...state.matrixA]
           : [...state.matrixB];
@@ -201,7 +194,7 @@ export default function reducer(
         };
       }
       matrix.forEach((col) => col.pop());
-      matrixC =
+      const matrixC =
         state.selectMatrix === MatrixName.B
           ? [...state.matrixC]
           : state.matrixC;
@@ -215,6 +208,7 @@ export default function reducer(
         matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
         matrixC: matrixC,
       };
+    }
     case CHANGE_MATRIX_A:
       return {
         ...state,
@@ -235,11 +229,11 @@ export default function reducer(
 
 function createEmptyArray(
   rows: number,
-  cols: number
+  cols: number,
 ): Array<Array<number | undefined>> {
   return Array.from({ length: rows }).map(() => Array.from({ length: cols }));
 }
 
 function clearError() {
-  return { error: "", color: Colors.default };
+  return { error: '', color: Colors.default };
 }
