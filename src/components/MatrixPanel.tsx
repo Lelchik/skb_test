@@ -1,27 +1,31 @@
-/* eslint-disable */
 import React from "react";
 import Matrix from "./Matrix";
+import { Colors, Matrix as MatrixType } from "../types";
 
-export const MatrixPanel = (props) => {
+interface Props {
+  matrixC: MatrixType;
+  matrixA: MatrixType;
+  matrixB: MatrixType;
+  onChangeMatrixA: (value: MatrixType) => void;
+  onChangeMatrixB: (value: MatrixType) => void;
+  onChangeBackground: (value: Colors) => void;
+}
+
+export const MatrixPanel = (props: Props) => {
   return (
     <div>
       <table>
         <tbody>
           <tr>
             <td>
-              <Matrix
-                {...props.matrixC}
-                SetValue={props.SetValue}
-                ChangeBackground={props.ChangeBackground}
-                disabled={1}
-              ></Matrix>
+              <Matrix matrix={props.matrixC} disabled name="c"></Matrix>
             </td>
             <td>
               <Matrix
-                {...props.matrixA}
-                SetValue={props.SetValue}
-                ChangeBackground={props.ChangeBackground}
-                disabled={0}
+                matrix={props.matrixA}
+                onChange={props.onChangeMatrixA}
+                onChangeBackground={props.onChangeBackground}
+                name={"a"}
               ></Matrix>
             </td>
             <td style={{ verticalAlign: "middle", fontSize: "x-large" }}>А</td>
@@ -29,10 +33,10 @@ export const MatrixPanel = (props) => {
           <tr>
             <td style={{ border: "none" }}>
               <Matrix
-                {...props.matrixB}
-                SetValue={props.SetValue}
-                ChangeBackground={props.ChangeBackground}
-                disabled={0}
+                matrix={props.matrixB}
+                onChange={props.onChangeMatrixB}
+                onChangeBackground={props.onChangeBackground}
+                name={"b"}
               ></Matrix>
             </td>
           </tr>

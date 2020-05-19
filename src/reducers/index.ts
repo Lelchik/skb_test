@@ -1,253 +1,245 @@
-/* eslint camelcase: 0 */
-/* eslint-disable */
-
-// при удалениии проверять на 0
+import { State } from "../components/App";
 import {
   CLEAR_MATRIX,
-  SET_VALUE,
-  DELETE_ROW_OR_COL,
   CHANGE_SELECTED_MATRIX,
-  ADD_ROW_OR_COL,
   MULTIPLY_MATRIX,
   CHANGE_COLOR,
   CHANGE_PLACE,
-} from "../constants";
-const emptyState = {
-  matrixA: {
-    col: 3,
-    row: 3,
-    array: [
-      ["", "", ""],
-      ["", "", ""],
-      ["", "", ""],
-    ],
-    name: "a",
-  },
-  matrixB: {
-    col: 3,
-    row: 3,
-    array: [
-      ["", "", ""],
-      ["", "", ""],
-      ["", "", ""],
-    ],
-    name: "b",
-  },
-  matrixC: {
-    col: 3,
-    row: 3,
-    array: [
-      ["", "", ""],
-      ["", "", ""],
-      ["", "", ""],
-    ],
-    name: "c",
-  },
-  selectMatrix: "matrixA",
-  error: "",
-  color: "grey",
+  MyltiplyMatrixTypes,
+  ADD_ROW,
+  DELETE_ROW,
+  ADD_COLUMN,
+  DELETE_COLUMN,
+  CHANGE_MATRIX_A,
+  CHANGE_MATRIX_B,
+  MatrixName,
+  Colors,
+} from "../types";
+
+const emptyState: State = {
+  matrixA: [
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+    [1, 2, 3],
+  ], //createEmptyArray(3, 3),
+  matrixB: [
+    [1, 2, 3, 12],
+    [4, 5, 6, 11],
+    [7, 8, 9, 12],
+  ], //createEmptyArray(3, 3),
+  matrixC: createEmptyArray(4, 4),
+  selectMatrix: MatrixName.A,
+  color: Colors.default,
 };
-export default function reducer(state = emptyState, { type, ...data }) {
-  console.log(state);
-  let key = 1;
-  switch (type) {
+export default function reducer(
+  state = emptyState,
+  action: MyltiplyMatrixTypes
+): State {
+  let matrix;
+  let matrixC;
+  switch (action.type) {
     case CLEAR_MATRIX:
-      var newState = state;
-      for (key in newState) {
-        if (key !== "selectMatrix" && key !== "error" && key !== "color")
-          newState[key].array = Array.from({ length: newState[key].row }, () =>
-            Array.from({ length: newState[key].col }, () => "")
-          );
-      }
-      console.log(newState);
       return {
         ...state,
-        matrixA: { ...newState.matrixA },
-        matrixB: { ...newState.matrixB },
-        matrixC: { ...newState.matrixC },
-      };
-    case SET_VALUE:
-      console.log(data);
-      newState = state;
-      switch (data.name) {
-        case "a": {
-          key = "matrixA";
-          break;
-        }
-        case "b": {
-          key = "matrixB";
-          break;
-        }
-        case "c": {
-          key = "matrixC";
-          break;
-        }
-      }
-      newState[key].array[data.row][data.col] = data.value;
-      console.log(newState);
-      return {
-        ...state,
-        matrixA: { ...newState.matrixA },
-        matrixB: { ...newState.matrixB },
-        matrixC: { ...newState.matrixC },
-        color: "#5199db",
+        ...clearError(),
+        matrixA: createEmptyArray(state.matrixA.length, state.matrixA.length),
+        matrixB: createEmptyArray(state.matrixB.length, state.matrixB.length),
+        matrixC: createEmptyArray(state.matrixC.length, state.matrixC.length),
       };
     case CHANGE_SELECTED_MATRIX:
-      let select = state.selectMatrix == "matrixA" ? "matrixB" : "matrixA";
-      console.log(select);
       return {
         ...state,
-        selectMatrix: select,
-      };
-    case DELETE_ROW_OR_COL:
-      console.log(data);
-      let error = state.error;
-      let color = state.color;
-      newState = state;
-      key = state.selectMatrix;
-      if (data.data) {
-        //удалить столбец
-        if (newState[key].col > 1) {
-          newState[key].col--;
-          newState[key].array.map(function (el) {
-            console.log(el);
-            return el.pop();
-          });
-          if (key === "matrixB") {
-            newState.matrixC.col--;
-            newState.matrixC.array.map(function (el) {
-              return el.pop();
-            });
-          }
-        } else {
-          error =
-            "невозможно удалить столбец! Количество столбцов у матрицы больше 1";
-          color = "#f6c1c0";
-        }
-      } else {
-        //удалить строку
-        if (newState[key].row > 1) {
-          newState[key].row--;
-          newState[key].array.pop();
-          if (key === "matrixA") {
-            newState.matrixC.row--;
-            newState.matrixC.array.pop();
-          }
-        } else {
-          error =
-            "невозможно удалить строку! Количество строк у матрицы больше 1";
-          color = "#f6c1c0";
-        }
-      }
-      console.log(newState);
-      return {
-        ...state,
-        matrixA: { ...newState.matrixA },
-        matrixB: { ...newState.matrixB },
-        matrixC: { ...newState.matrixC },
-        error: error,
-        color: color,
-      };
-    case ADD_ROW_OR_COL:
-      newState = state;
-      key = state.selectMatrix;
-      console.log(key);
-      if (data.data) {
-        //добавить столбец
-        newState[key].col++;
-        newState[key].array.map(function (el, id) {
-          console.log(el, id);
-          return el.push("");
-        });
-        if (key === "matrixB") {
-          newState.matrixC.col++;
-          newState.matrixC.array.map(function (el, id) {
-            return el.push("");
-          });
-        }
-      } else {
-        //добавить строку
-        newState[key].row++;
-        newState[key].array.push(
-          Array.from({ length: newState[key].col }, () => "")
-        );
-        if (key === "matrixA") {
-          newState.matrixC.row++;
-          newState.matrixC.array.push(
-            Array.from({ length: newState.matrixC.col }, () => "")
-          );
-        }
-      }
-      //console.log(newState);
-      return {
-        ...state,
-        matrixA: { ...newState.matrixA },
-        matrixB: { ...newState.matrixB },
-        matrixC: { ...newState.matrixC },
-      };
-    case MULTIPLY_MATRIX:
-      if (state.matrixA.col !== state.matrixB.row)
-        return {
-          ...state,
-          error:
-            "количество столбцов матрицы А не равно количеству строк матрицы В",
-          color: "#f6c1c0",
-        };
-      if (!state.matrixA.array.every((el) => el.every((e) => e !== ""))) {
-        return {
-          ...state,
-          error: "не все ячейки матрицы А заполнены",
-          color: "#f6c1c0",
-        };
-      }
-      if (!state.matrixB.array.every((el) => el.every((e) => e !== ""))) {
-        return {
-          ...state,
-          error: "не все ячейки матрицы B заполнены",
-          color: "#f6c1c0",
-        };
-      }
-
-      for (var k = 0; k < state.matrixB.col; k++) {
-        for (var i = 0; i < state.matrixA.row; i++) {
-          var t = 0;
-          for (var j = 0; j < state.matrixB.row; j++)
-            t += state.matrixA.array[i][j] * state.matrixB.array[j][k];
-          state.matrixC.array[i][k] = t;
-        }
-      }
-
-      return {
-        ...state,
-        matrixA: { ...state.matrixA },
-        matrixB: { ...state.matrixB },
-        matrixC: { ...state.matrixC },
-        error: "",
-        color: "grey",
+        ...clearError(),
+        selectMatrix:
+          state.selectMatrix == MatrixName.A ? MatrixName.B : MatrixName.A,
       };
     case CHANGE_COLOR:
       return {
         ...state,
-        color: data.data,
+        color: action.data.color,
       };
     case CHANGE_PLACE:
-      let matrixB = state.matrixA;
-      matrixB.name = "b";
-      let matrixA = state.matrixB;
-      matrixA.name = "a";
-      let matrixC = state.matrixC;
-      matrixC.col = matrixB.col;
-      matrixC.row = matrixA.row;
-      matrixC.array = Array.from({ length: matrixC.row }, () =>
-        Array.from({ length: matrixC.col }, () => "")
-      );
       return {
         ...state,
-        matrixA: { ...matrixA },
-        matrixB: { ...matrixB },
-        matrixC: { ...matrixC },
+        ...clearError(),
+        matrixA: state.matrixB,
+        matrixB: state.matrixA,
+        matrixC: createEmptyArray(
+          state.matrixB.length,
+          state.matrixA[0].length
+        ),
       };
+
+    case MULTIPLY_MATRIX:
+      const matrixAColCount = state.matrixA.length;
+      const matrixCColCount = state.matrixC.length;
+      const matrixCRowCount = state.matrixC[0].length;
+      const matrixBRowCount = state.matrixB[0].length;
+      if (matrixAColCount !== matrixBRowCount)
+        return {
+          ...state,
+          error:
+            "количество столбцов матрицы А не равно количеству строк матрицы В",
+          color: Colors.error,
+        };
+      if (state.matrixA.some((el) => el.some((e) => e == undefined))) {
+        return {
+          ...state,
+          error: "не все ячейки матрицы А заполнены",
+          color: Colors.error,
+        };
+      }
+      if (state.matrixB.some((el) => el.some((e) => e == undefined))) {
+        return {
+          ...state,
+          error: "не все ячейки матрицы B заполнены",
+          color: Colors.error,
+        };
+      }
+
+      for (var k = 0; k < matrixCRowCount; k++) {
+        for (var i = 0; i < matrixCColCount; i++) {
+          state.matrixC[i][k] = state.matrixB.reduce(
+            (sum: number, col: Array<number | undefined>, j: number) => {
+              // @ts-ignore
+              sum += state.matrixA[i][j] * col[k];
+              return sum;
+            },
+            0
+          );
+        }
+      }
+
+      return {
+        ...state,
+        ...clearError(),
+        matrixC: [...state.matrixC],
+        error: "",
+        color: Colors.default,
+      };
+
+    case ADD_ROW:
+      matrix =
+        state.selectMatrix === MatrixName.A
+          ? [...state.matrixA]
+          : [...state.matrixB];
+      const colsCount = matrix[0].length;
+      matrix.push(Array.from({ length: colsCount }));
+      matrixC =
+        state.selectMatrix === MatrixName.A
+          ? [...state.matrixC]
+          : state.matrixC;
+      if (state.selectMatrix === MatrixName.A) {
+        matrixC.push(Array.from({ length: matrixC[0].length }));
+      }
+      return {
+        ...state,
+        matrixA: state.selectMatrix === MatrixName.A ? matrix : state.matrixA,
+        matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
+        matrixC: matrixC,
+      };
+    case DELETE_ROW:
+      matrix =
+        state.selectMatrix === MatrixName.A
+          ? [...state.matrixA]
+          : [...state.matrixB];
+      if (matrix.length === 1) {
+        return {
+          ...state,
+          color: Colors.default,
+          error: "невозможно удалить последнюю строку!",
+        };
+      }
+      matrix.pop();
+      matrixC =
+        state.selectMatrix === MatrixName.A
+          ? [...state.matrixC]
+          : state.matrixC;
+      if (state.selectMatrix === MatrixName.A) {
+        matrixC.pop();
+      }
+      return {
+        ...state,
+        ...clearError(),
+        matrixA: state.selectMatrix === MatrixName.A ? matrix : state.matrixA,
+        matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
+        matrixC: matrixC,
+      };
+
+    case ADD_COLUMN:
+      matrix =
+        state.selectMatrix === MatrixName.A
+          ? [...state.matrixA]
+          : [...state.matrixB];
+
+      matrix.forEach((col) => col.push(undefined));
+      matrixC =
+        state.selectMatrix === MatrixName.B
+          ? [...state.matrixC]
+          : state.matrixC;
+      if (state.selectMatrix === MatrixName.B) {
+        matrixC.forEach((col) => col.push(undefined));
+      }
+      return {
+        ...state,
+        ...clearError(),
+        matrixA: state.selectMatrix === MatrixName.A ? matrix : state.matrixA,
+        matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
+        matrixC: matrixC,
+      };
+    case DELETE_COLUMN:
+      matrix =
+        state.selectMatrix === MatrixName.A
+          ? [...state.matrixA]
+          : [...state.matrixB];
+      if (matrix[0].length === 1) {
+        return {
+          ...state,
+          error: `невозможно удалить последний столбец!`,
+          color: Colors.default,
+        };
+      }
+      matrix.forEach((col) => col.pop());
+      matrixC =
+        state.selectMatrix === MatrixName.B
+          ? [...state.matrixC]
+          : state.matrixC;
+      if (state.selectMatrix === MatrixName.B) {
+        matrixC.forEach((col) => col.pop());
+      }
+      return {
+        ...state,
+        ...clearError(),
+        matrixA: state.selectMatrix === MatrixName.A ? matrix : state.matrixA,
+        matrixB: state.selectMatrix === MatrixName.B ? matrix : state.matrixB,
+        matrixC: matrixC,
+      };
+    case CHANGE_MATRIX_A:
+      return {
+        ...state,
+        ...clearError(),
+        matrixA: action.data.matrix,
+      };
+    case CHANGE_MATRIX_B:
+      return {
+        ...state,
+        ...clearError(),
+        matrixB: action.data.matrix,
+      };
+
     default:
       return state;
   }
+}
+
+function createEmptyArray(
+  rows: number,
+  cols: number
+): Array<Array<number | undefined>> {
+  return Array.from({ length: rows }).map(() => Array.from({ length: cols }));
+}
+
+function clearError() {
+  return { error: "", color: Colors.default };
 }

@@ -2,26 +2,59 @@ import React from "react";
 import ControlPanel from "./ControlPanel";
 import MatrixPanel from "./MatrixPanel";
 
-import { connect } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import {
   ClearMatrix,
-  SetValue,
-  DeleteRowOrCol,
   ChangeSelectedMatrix,
-  AddRowOrCol,
   MultiplyMatrix,
   ChangeBackground,
   ChangePlace,
+  ChangeMatrixA,
+  ChangeMatrixB,
+  AddColumn,
+  AddRow,
+  DeleteColumn,
+  DeleteRow,
 } from "../actions";
-const App = (props) => {
+import { Matrix, MatrixName, Colors } from "../types";
+
+export interface State {
+  matrixA: Matrix;
+  matrixB: Matrix;
+  matrixC: Matrix;
+  selectMatrix: MatrixName;
+  color: Colors;
+  error?: string;
+}
+const App = (props: Props) => {
   return (
     <>
-      <ControlPanel {...props} />
-      <MatrixPanel {...props} />
+      <ControlPanel
+        color={props.color}
+        selectedMatrixToAction={props.selectMatrix}
+        onAddColumn={props.AddColumn}
+        onAddRow={props.AddRow}
+        onDeleteColumn={props.DeleteColumn}
+        onDeleteRow={props.DeleteRow}
+        onChangeSelectedMatrix={props.ChangeSelectedMatrix}
+        onChangePlaces={props.ChangePlace}
+        onMultiplication={props.MultiplyMatrix}
+        onClear={props.ClearMatrix}
+        error={props.error}
+      />
+      <MatrixPanel
+        matrixA={props.matrixA}
+        matrixB={props.matrixB}
+        matrixC={props.matrixC}
+        onChangeMatrixA={props.ChangeMatrixA}
+        onChangeMatrixB={props.ChangeMatrixB}
+        onChangeBackground={props.ChangeBackground}
+      />
     </>
   );
 };
-function mapStateToProps(state) {
+
+function mapStateToProps(state: State) {
   return {
     ...state,
   };
@@ -29,13 +62,18 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = {
   ClearMatrix,
-  SetValue,
-  DeleteRowOrCol,
   ChangeSelectedMatrix,
-  AddRowOrCol,
   MultiplyMatrix,
   ChangeBackground,
   ChangePlace,
+  ChangeMatrixA,
+  ChangeMatrixB,
+  AddColumn,
+  AddRow,
+  DeleteColumn,
+  DeleteRow,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const connector = connect(mapStateToProps, mapDispatchToProps);
+export type Props = ConnectedProps<typeof connector>;
+export default connector(App);
