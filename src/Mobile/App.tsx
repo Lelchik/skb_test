@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { connect, ConnectedProps } from 'react-redux';
 import {
   ClearMatrix,
@@ -15,6 +14,7 @@ import {
   DeleteRow,
 } from '../actions/index';
 import { Matrix, MatrixName, Colors } from '../types';
+import MatrixPanel from './MatrixPanel';
 
 export interface State {
   matrixA: Matrix;
@@ -25,7 +25,16 @@ export interface State {
   error?: string;
 }
 const App = (props: Props) => {
-  return <Text>{JSON.stringify(props, null, 4)}</Text>;
+  return (
+    <MatrixPanel
+      matrixA={props.matrixA}
+      matrixB={props.matrixB}
+      matrixC={props.matrixC}
+      onChangeMatrixA={props.ChangeMatrixA}
+      onChangeMatrixB={props.ChangeMatrixB}
+      onChangeBackground={props.ChangeBackground}
+    />
+  );
 };
 
 function mapStateToProps(state: State) {
