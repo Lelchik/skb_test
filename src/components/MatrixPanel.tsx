@@ -13,36 +13,32 @@ interface Props {
 
 export const MatrixPanel = (props: Props) => {
   return (
-    <div>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <Matrix matrix={props.matrixC} disabled name="c"></Matrix>
-            </td>
-            <td>
-              <Matrix
-                matrix={props.matrixA}
-                onChange={props.onChangeMatrixA}
-                onChangeBackground={props.onChangeBackground}
-                name={'a'}></Matrix>
-            </td>
-            <td style={{ verticalAlign: 'middle', fontSize: 'x-large' }}>А</td>
-          </tr>
-          <tr>
-            <td style={{ border: 'none' }}>
-              <Matrix
-                matrix={props.matrixB}
-                onChange={props.onChangeMatrixB}
-                onChangeBackground={props.onChangeBackground}
-                name={'b'}></Matrix>
-            </td>
-          </tr>
-          <tr>
-            <td style={{ textAlign: 'center', fontSize: 'x-large' }}>B</td>
-          </tr>
-        </tbody>
-      </table>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <Matrix matrix={props.matrixC} disabled name="c" />
+        <Matrix
+          matrix={props.matrixA}
+          onChange={props.onChangeMatrixA}
+          onChangeBackground={props.onChangeBackground}
+          name={'a'}
+        />
+        <div style={{ fontSize: 'x-large' }}>А</div>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <Matrix
+          matrix={props.matrixB}
+          onChange={props.onChangeMatrixB}
+          onChangeBackground={props.onChangeBackground}
+          name={'b'}
+        />
+        <div
+          style={{
+            paddingLeft: `${38 * props.matrixB.length}px`,
+            fontSize: 'x-large',
+          }}>
+          B
+        </div>
+      </div>
     </div>
   );
 };
