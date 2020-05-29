@@ -11,7 +11,6 @@ import MatrixView from './MatrixView';
 
 interface Props {
   matrix: MatrixType;
-  name: string;
   onChange?: (matrix: MatrixType) => void;
   disabled?: boolean;
 }
@@ -28,28 +27,30 @@ export const Matrix = (props: Props) => {
   }
 
   return (
-    <View style={styles.root}>
-      <Modal animationType="fade" transparent={true} visible={editable}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <MatrixView matrix={modalMatrix} onChange={handleChangeMatrix} />
-            <View style={styles.footer}>
-              <Button title="Готово" onPress={handleApplyChanges}></Button>
-              <Button
-                title="Отмена"
-                color="#aaa"
-                onPress={() => {
-                  handleChangeMatrix(props.matrix);
-                  handleChangeEditable(false);
-                }}></Button>
+    <View>
+      {!props.disabled && (
+        <Modal animationType="fade" transparent={true} visible={editable}>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <MatrixView matrix={modalMatrix} onChange={handleChangeMatrix} />
+              <View style={styles.footer}>
+                <Button title="Готово" onPress={handleApplyChanges}></Button>
+                <Button
+                  title="Отмена"
+                  color="#aaa"
+                  onPress={() => {
+                    handleChangeMatrix(props.matrix);
+                    handleChangeEditable(false);
+                  }}></Button>
+              </View>
             </View>
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      )}
 
       <TouchableHighlight
         onPress={() => {
-          handleChangeEditable(true);
+          !props.disabled && handleChangeEditable(true);
         }}>
         <MatrixView matrix={props.matrix} disabled />
       </TouchableHighlight>
@@ -58,12 +59,6 @@ export const Matrix = (props: Props) => {
 };
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 22,
-  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
