@@ -4,7 +4,7 @@ import UndoIcon from '@skbkontur/react-icons/Undo';
 import ArrowParallelVerticalIcon from '@skbkontur/react-icons/ArrowParallelVertical';
 import AddIcon from '@skbkontur/react-icons/Add';
 import RemoveIcon from '@skbkontur/react-icons/Remove';
-import { Colors, MatrixName } from '../types';
+import { Colors, MatrixName } from '../types/types';
 
 interface Props {
   color: Colors;

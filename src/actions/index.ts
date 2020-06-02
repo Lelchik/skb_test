@@ -23,7 +23,7 @@ import {
   CHANGE_PLACE,
   Colors,
   Matrix,
-} from '../types';
+} from '../types/types';
 
 export function ClearMatrix(): ClearMatrixAction {
   return {

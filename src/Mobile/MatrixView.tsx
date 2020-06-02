@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet } from 'react-native';
-import { Matrix as MatrixType } from '../types';
+import { Matrix as MatrixType } from '../types/types';
 
 interface Props {
   matrix: MatrixType;

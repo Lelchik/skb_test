@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input } from '@skbkontur/react-ui';
-import { Colors, Matrix as MatrixType } from '../types';
+import { Colors, Matrix as MatrixType } from '../types/types';
 
 interface Props {
   matrix: MatrixType;

@@ -13,7 +13,7 @@ import {
   DeleteColumn,
   DeleteRow,
 } from '../actions/index';
-import { Matrix, MatrixName, Colors } from '../types';
+import { Matrix, MatrixName, Colors } from '../types/types';
 import MatrixPanel from './MatrixPanel';
 
 export interface State {

@@ -14,7 +14,7 @@ import {
   CHANGE_MATRIX_B,
   MatrixName,
   Colors,
-} from '../types';
+} from '../types/types';
 
 const emptyState: State = {
   matrixA: createEmptyArray(3, 3),

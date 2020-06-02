@@ -16,7 +16,7 @@ import {
   DeleteColumn,
   DeleteRow,
 } from '../actions';
-import { Matrix, MatrixName, Colors } from '../types';
+import { Matrix, MatrixName, Colors } from '../types/types';
 
 export interface State {
   matrixA: Matrix;

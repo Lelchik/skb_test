@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Button,
 } from 'react-native';
-import { Matrix as MatrixType } from '../types';
+import { Matrix as MatrixType } from '../types/types';
 import MatrixView from './MatrixView';
 
 interface Props {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Matrix from './Matrix';
-import { Colors, Matrix as MatrixType } from '../types';
+import { Colors, Matrix as MatrixType } from '../types/types';
 import { View, StyleSheet, Text } from 'react-native';
 
 interface Props {
