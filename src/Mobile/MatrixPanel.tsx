@@ -2,6 +2,7 @@ import React from 'react';
 import Matrix from './Matrix';
 import { Colors, Matrix as MatrixType } from '../types/types';
 import { View, StyleSheet, Text } from 'react-native';
+import { Card } from 'react-native-elements';
 
 interface Props {
   matrixC: MatrixType;
@@ -16,21 +17,19 @@ export const MatrixPanel = (props: Props) => {
   return (
     <View style={styles.root}>
       <View style={styles.container}>
-        <View style={styles.item}>
+        <Card>
           <Matrix matrix={props.matrixC} disabled />
-        </View>
-        <View style={styles.item}>
-          <Matrix matrix={props.matrixA} onChange={props.onChangeMatrixA} />
-        </View>
-        <View style={styles.item}>
-          <Text style={styles.name}>A</Text>
-        </View>
+        </Card>
+        <Card>
+          <View style={styles.container}>
+            <Matrix matrix={props.matrixA} onChange={props.onChangeMatrixA} />
+            <Text style={{ ...styles.name, paddingLeft: 5 }}>A</Text>
+          </View>
+        </Card>
       </View>
-      <View style={styles.matrixB}>
-        <View style={styles.item}>
+      <View style={styles.container}>
+        <Card>
           <Matrix matrix={props.matrixB} onChange={props.onChangeMatrixB} />
-        </View>
-        <View style={styles.item}>
           <Text
             style={{
               ...styles.name,
@@ -38,7 +37,7 @@ export const MatrixPanel = (props: Props) => {
             }}>
             B
           </Text>
-        </View>
+        </Card>
       </View>
     </View>
   );
@@ -48,6 +47,7 @@ const styles = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    padding: 15,
   },
   container: {
     display: 'flex',
@@ -55,11 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   item: {
-    margin: 5,
-  },
-  matrixB: {
-    display: 'flex',
-    flexDirection: 'column',
+    margin: 15,
   },
   name: {
     fontSize: 20,

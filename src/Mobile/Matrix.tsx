@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import {
-  TouchableHighlight,
-  Modal,
-  View,
-  StyleSheet,
-  Button,
-} from 'react-native';
+import { TouchableHighlight, View, StyleSheet } from 'react-native';
 import { Matrix as MatrixType } from '../types/types';
 import MatrixView from './MatrixView';
+import { Overlay, Button } from 'react-native-elements';
 
 interface Props {
   matrix: MatrixType;
@@ -29,23 +24,24 @@ export const Matrix = (props: Props) => {
   return (
     <View>
       {!props.disabled && (
-        <Modal animationType="fade" transparent={true} visible={editable}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <MatrixView matrix={modalMatrix} onChange={handleChangeMatrix} />
-              <View style={styles.footer}>
-                <Button title="Готово" onPress={handleApplyChanges}></Button>
-                <Button
-                  title="Отмена"
-                  color="#aaa"
-                  onPress={() => {
-                    handleChangeMatrix(props.matrix);
-                    handleChangeEditable(false);
-                  }}></Button>
-              </View>
+        <Overlay isVisible={editable}>
+          <View style={styles.modalView}>
+            <MatrixView matrix={modalMatrix} onChange={handleChangeMatrix} />
+            <View style={styles.footer}>
+              <Button
+                title="Готово"
+                onPress={handleApplyChanges}
+                containerStyle={{ marginRight: 5 }}></Button>
+              <Button
+                title="Отмена"
+                buttonStyle={{ backgroundColor: '#aaa' }}
+                onPress={() => {
+                  handleChangeMatrix(props.matrix);
+                  handleChangeEditable(false);
+                }}></Button>
             </View>
           </View>
-        </Modal>
+        </Overlay>
       )}
 
       <TouchableHighlight
@@ -59,27 +55,10 @@ export const Matrix = (props: Props) => {
 };
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#555',
-  },
   modalView: {
-    margin: 20,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
+    padding: 20,
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
   },
-  footer: { flexDirection: 'row', alignItems: 'stretch', marginTop: 5 },
+  footer: { flexDirection: 'row', alignItems: 'stretch', paddingTop: 15 },
 });
 export default Matrix;

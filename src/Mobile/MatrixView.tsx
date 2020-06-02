@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
   value: {
     textAlign: 'center',
     textAlignVertical: 'center',
+    fontSize: 20,
   },
 });
 export default MatrixView;
