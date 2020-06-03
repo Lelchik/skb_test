@@ -11,7 +11,7 @@ export const CHANGE_MATRIX_A = 'CHANGE_MATRIX_A';
 export const CHANGE_MATRIX_B = 'CHANGE_MATRIX_B';
 
 export enum Colors {
-  default = '#bcbcbc',
+  default = '#5199db',
   edit = '#5199db',
   error = '#f6c1c0',
 }

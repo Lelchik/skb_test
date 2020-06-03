@@ -17,7 +17,12 @@ import { Matrix, MatrixName, Colors } from '../types/types';
 import MatrixPanel from './MatrixPanel';
 import ControlPanel from './ControlPanel';
 import { Header, Button } from 'react-native-elements';
-import { SafeAreaView, StyleSheet, DrawerLayoutAndroid } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  DrawerLayoutAndroid,
+  Text,
+} from 'react-native';
 
 export interface State {
   matrixA: Matrix;
@@ -34,6 +39,10 @@ const App = (props: Props) => {
     drawer != null && drawer.openDrawer();
   }
 
+  function closeMenu() {
+    drawer != null && drawer.closeDrawer();
+  }
+
   const menu = (
     <ControlPanel
       selectedMatrixToAction={props.selectMatrix}
@@ -42,9 +51,18 @@ const App = (props: Props) => {
       onDeleteColumn={props.DeleteColumn}
       onDeleteRow={props.DeleteRow}
       onChangeSelectedMatrix={props.ChangeSelectedMatrix}
-      onChangePlaces={props.ChangePlace}
-      onMultiplication={props.MultiplyMatrix}
-      onClear={props.ClearMatrix}
+      onChangePlaces={() => {
+        props.ChangePlace();
+        closeMenu();
+      }}
+      onMultiplication={() => {
+        props.MultiplyMatrix();
+        closeMenu();
+      }}
+      onClear={() => {
+        props.ClearMatrix();
+        closeMenu();
+      }}
       error={props.error}
     />
   );
@@ -60,6 +78,7 @@ const App = (props: Props) => {
         <Header
           leftComponent={
             <Button
+              buttonStyle={{ backgroundColor: props.color }}
               icon={{ name: 'menu', color: 'white' }}
               onPress={openMenu}
             />
@@ -73,6 +92,7 @@ const App = (props: Props) => {
               onPress={props.MultiplyMatrix}
             />
           }
+          containerStyle={{ backgroundColor: props.color }}
         />
 
         <MatrixPanel
@@ -83,6 +103,15 @@ const App = (props: Props) => {
           onChangeMatrixB={props.ChangeMatrixB}
           onChangeBackground={props.ChangeBackground}
         />
+
+        <Text
+          style={{
+            color: 'red',
+            fontWeight: 'bold',
+            margin: 10,
+          }}>
+          {props.error}
+        </Text>
       </DrawerLayoutAndroid>
     </SafeAreaView>
   );
@@ -91,12 +120,6 @@ const App = (props: Props) => {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-  },
-  footer: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
 });
 
