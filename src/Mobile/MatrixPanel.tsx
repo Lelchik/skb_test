@@ -1,6 +1,6 @@
 import React from 'react';
 import Matrix from './Matrix';
-import { Colors, Matrix as MatrixType } from '../types/types';
+import { Colors, Matrix as MatrixType, MatrixName } from '../types/types';
 import { View, StyleSheet, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 
@@ -22,14 +22,22 @@ export const MatrixPanel = (props: Props) => {
         </Card>
         <Card>
           <View style={styles.container}>
-            <Matrix matrix={props.matrixA} onChange={props.onChangeMatrixA} />
+            <Matrix
+              matrix={props.matrixA}
+              onChange={props.onChangeMatrixA}
+              name={MatrixName.A}
+            />
             <Text style={{ ...styles.name, paddingLeft: 5 }}>A</Text>
           </View>
         </Card>
       </View>
       <View style={styles.container}>
         <Card>
-          <Matrix matrix={props.matrixB} onChange={props.onChangeMatrixB} />
+          <Matrix
+            matrix={props.matrixB}
+            onChange={props.onChangeMatrixB}
+            name={MatrixName.B}
+          />
           <Text
             style={{
               ...styles.name,
