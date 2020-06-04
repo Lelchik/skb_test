@@ -22,6 +22,7 @@ import {
   StyleSheet,
   DrawerLayoutAndroid,
   Text,
+  ScrollView,
 } from 'react-native';
 
 export interface State {
@@ -75,43 +76,45 @@ const App = (props: Props) => {
         drawerPosition={'left'}
         ref={(el) => (drawer = el)}
         renderNavigationView={() => menu}>
-        <Header
-          leftComponent={
-            <Button
-              buttonStyle={{ backgroundColor: props.color }}
-              icon={{ name: 'menu', color: 'white' }}
-              onPress={openMenu}
-            />
-          }
-          centerComponent={
-            <Button
-              title="Умножить матрицы"
-              type="outline"
-              titleStyle={{ color: 'white' }}
-              buttonStyle={{ borderColor: 'white', backgroundColor: 'green' }}
-              onPress={props.MultiplyMatrix}
-            />
-          }
-          containerStyle={{ backgroundColor: props.color }}
-        />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <Header
+            leftComponent={
+              <Button
+                buttonStyle={{ backgroundColor: props.color }}
+                icon={{ name: 'menu', color: 'white' }}
+                onPress={openMenu}
+              />
+            }
+            centerComponent={
+              <Button
+                title="Умножить матрицы"
+                type="outline"
+                titleStyle={{ color: 'white' }}
+                buttonStyle={{ borderColor: 'white', backgroundColor: 'green' }}
+                onPress={props.MultiplyMatrix}
+              />
+            }
+            containerStyle={{ backgroundColor: props.color }}
+          />
 
-        <MatrixPanel
-          matrixA={props.matrixA}
-          matrixB={props.matrixB}
-          matrixC={props.matrixC}
-          onChangeMatrixA={props.ChangeMatrixA}
-          onChangeMatrixB={props.ChangeMatrixB}
-          onChangeBackground={props.ChangeBackground}
-        />
+          <MatrixPanel
+            matrixA={props.matrixA}
+            matrixB={props.matrixB}
+            matrixC={props.matrixC}
+            onChangeMatrixA={props.ChangeMatrixA}
+            onChangeMatrixB={props.ChangeMatrixB}
+            onChangeBackground={props.ChangeBackground}
+          />
 
-        <Text
-          style={{
-            color: 'red',
-            fontWeight: 'bold',
-            margin: 10,
-          }}>
-          {props.error}
-        </Text>
+          <Text
+            style={{
+              color: 'red',
+              fontWeight: 'bold',
+              margin: 10,
+            }}>
+            {props.error}
+          </Text>
+        </ScrollView>
       </DrawerLayoutAndroid>
     </SafeAreaView>
   );

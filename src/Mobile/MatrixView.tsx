@@ -27,9 +27,7 @@ export const MatrixView = (props: Props) => {
 
   function renderColumn(array: Array<number | undefined>, rowIndex: number) {
     return array.map((col: number | undefined, colIndex: number) => (
-      <View
-        key={colIndex}
-        style={colIndex === array.length - 1 ? styles.lastCell : styles.cell}>
+      <View key={colIndex} style={styles.cell}>
         {!props.disabled ? (
           <TextInput
             style={styles.input}
@@ -40,20 +38,23 @@ export const MatrixView = (props: Props) => {
             }
           />
         ) : (
-          <Text style={styles.value}>{col == null ? '_' : col}</Text>
+          <Text style={styles.value} numberOfLines={1}>
+            {col == null ? '_' : col}
+          </Text>
         )}
       </View>
     ));
   }
 
   function renderMatrix() {
-    return props.matrix.map(
-      (row: Array<number | undefined>, rowIndex: number) => (
-        <View style={styles.row} key={rowIndex}>
-          {renderColumn(row, rowIndex)}
-        </View>
-      ),
-    );
+    return props.matrix[0].map((_: number | undefined, rowIndex: number) => (
+      <View style={styles.row} key={rowIndex}>
+        {renderColumn(
+          props.matrix.map((row) => row[rowIndex]),
+          rowIndex,
+        )}
+      </View>
+    ));
   }
 
   return (
@@ -69,6 +70,9 @@ export const MatrixView = (props: Props) => {
 const styles = StyleSheet.create({
   matrix: {
     padding: 3,
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   border: {
     width: 3,
@@ -86,25 +90,23 @@ const styles = StyleSheet.create({
   },
 
   row: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     marginBottom: 5,
   },
   cell: {
-    marginLeft: 5,
-  },
-  lastCell: {
-    marginRight: 5,
     marginLeft: 5,
   },
   input: {
     textAlign: 'center',
     borderColor: 'gray',
     borderWidth: 1,
+    maxWidth: 50,
   },
   value: {
     textAlign: 'center',
     textAlignVertical: 'center',
     fontSize: 20,
+    maxWidth: 50,
   },
 });
 export default MatrixView;

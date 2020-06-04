@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    padding: 15,
+    padding: 5,
   },
   container: {
     display: 'flex',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   item: {
-    margin: 15,
+    margin: 5,
   },
   name: {
     fontSize: 20,
