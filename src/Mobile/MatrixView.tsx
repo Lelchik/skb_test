@@ -34,7 +34,7 @@ export const MatrixView = (props: Props) => {
             keyboardType="number-pad"
             value={col == null ? '' : col + ''}
             onChangeText={(value) =>
-              handleChangeValue(rowIndex, colIndex, value)
+              handleChangeValue(colIndex, rowIndex, value)
             }
           />
         ) : (
