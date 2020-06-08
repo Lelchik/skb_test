@@ -8,7 +8,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "mobile:start": "react-native start",
-    "lint": "eslint src/**/*.tsx src/**/*.ts"
+    "lint": "eslint src/**/*.tsx src/**/*.ts",
+    "mobile:release": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/build/intermediates/res/merged/release/ && rimraf android/app/src/main/res/drawable-* && rimraf android/app/src/main/res/raw/* && cd android && ./gradlew assembleRelease && cd .."
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "request": "^2.69.0",
+    "rimraf": "^3.0.2",
     "simple-react-typeahead": "^0.1.1",
     "typescript": "^3.9.2",
     "webpack-cli": "^3.3.11",
